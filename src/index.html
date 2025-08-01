@@ -48,6 +48,48 @@
             </form>
         </div>
     </div>
+
+
+     <!-- Main Application -->
+    <div class="app-container" id="appContainer" style="display: none;">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">G</div>
+                <span class="logo-text">Gemini</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-action="new-chat">
+                    <span class="nav-icon">💬</span>
+                    <span class="nav-text">New Chat</span>
+                </button>
+                <button class="nav-item" data-action="history">
+                    <span class="nav-icon">📚</span>
+                    <span class="nav-text">History</span>
+                </button>
+                <button class="nav-item" data-action="recent">
+                    <span class="nav-icon">⏰</span>
+                    <span class="nav-text">Recent</span>
+                </button>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <span class="user-name" id="userName">User</span>
+                </div>
+                <button class="theme-toggle" id="themeToggle">
+                    <span class="nav-icon">🌙</span>
+                    <span class="nav-text">Dark Mode</span>
+                </button>
+                <button class="logout-btn" id="logoutBtn">
+                    <span class="nav-icon">🚪</span>
+                    <span class="nav-text">Logout</span>
+                </button>
+            </div>
+        </div>
+        
     <script src="js/app.js"></script>
     
 </body>
