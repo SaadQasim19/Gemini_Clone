@@ -1,0 +1,24 @@
+{
+  "name": "gemini-ai-clone",
+  "version": "1.0.0",
+  "description": "A clone of the Gemini AI application featuring chat functionality, authentication, and theme toggling.",
+  "main": "src/js/app.js",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build process not defined'",
+    "test": "echo 'No tests defined'"
+  },
+  "keywords": [
+    "chat",
+    "ai",
+    "authentication",
+    "dark-mode",
+    "responsive"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
