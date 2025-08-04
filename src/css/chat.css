@@ -198,3 +198,16 @@ container {
         opacity: 1;
     }
 }
+
+.input-area {
+    padding: 24px;
+    background: var(--primary-bg);
+    border-top: 1px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.input-container {
+    max-width: 768px;
+    margin: 0 auto;
+    position: relative;
+}
