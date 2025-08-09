@@ -43,3 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize event listeners
     setupEventListeners();
 });
+
+function loadConversationHistory() {
+    const saved = localStorage.getItem(`conversation_${currentUser.id}`);
+    if (saved) {
+        conversationHistory = JSON.parse(saved);
+        displayConversationHistory();
+    }
+}
