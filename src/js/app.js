@@ -70,3 +70,25 @@ function displayConversationHistory() {
         addMessageToChat(msg.role, msg.content, msg.timestamp, false);
     });
 }
+
+function showGreeting(user) {
+    const welcomeGreeting = document.getElementById('welcomeGreeting');
+    if (!welcomeGreeting) {
+        console.log('Welcome greeting element not found');
+        return;
+    }
+    
+    const currentHour = new Date().getHours();
+    let greeting;
+    
+    if (currentHour < 12) {
+        greeting = 'Good morning';
+    } else if (currentHour < 18) {
+        greeting = 'Good afternoon';
+    } else {
+        greeting = 'Good evening';
+    }
+    
+    welcomeGreeting.textContent = `${greeting}, ${user.name}!`;
+    console.log('Greeting set:', `${greeting}, ${user.name}!`);
+}
