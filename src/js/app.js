@@ -169,3 +169,24 @@ function logout() {
     localStorage.removeItem('currentUser');
     window.location.reload();
 }
+
+function toggleTheme() {
+    isDarkMode = !isDarkMode;
+    localStorage.setItem('darkMode', isDarkMode);
+    applyTheme();
+    
+    // Update theme toggle text
+    const themeToggle = document.getElementById('themeToggle');
+    const themeText = themeToggle.querySelector('.nav-text');
+    const themeIcon = themeToggle.querySelector('.nav-icon');
+    
+    if (themeText && themeIcon) {
+        if (isDarkMode) {
+            themeText.textContent = 'Light Mode';
+            themeIcon.textContent = '☀️';
+        } else {
+            themeText.textContent = 'Dark Mode';
+            themeIcon.textContent = '🌙';
+        }
+    }
+}
