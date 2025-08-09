@@ -92,3 +92,75 @@ function showGreeting(user) {
     welcomeGreeting.textContent = `${greeting}, ${user.name}!`;
     console.log('Greeting set:', `${greeting}, ${user.name}!`);
 }
+
+function setupEventListeners() {
+    // Logout functionality
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', logout);
+    }
+    
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+    
+    // Menu toggle for mobile
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    if (menuToggle && sidebar) {
+        menuToggle.addEventListener('click', function() {
+            sidebar.classList.toggle('sidebar-open');
+        });
+    }
+    
+    // Navigation items
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Remove active class from all items
+            navItems.forEach(nav => nav.classList.remove('active'));
+            // Add active class to clicked item
+            this.classList.add('active');
+            
+            const action = this.getAttribute('data-action');
+            handleNavigation(action);
+        });
+    });
+    
+    // File upload
+    const fileButton = document.getElementById('fileButton');
+    const fileInput = document.getElementById('fileInput');
+    if (fileButton && fileInput) {
+        fileButton.addEventListener('click', function() {
+            fileInput.click();
+        });
+        
+        fileInput.addEventListener('change', handleFileUpload);
+    }
+    
+    // Message input and send button
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+    
+    if (messageInput && sendButton) {
+        // Initialize send button state
+        sendButton.disabled = !messageInput.value.trim();
+        
+        messageInput.addEventListener('input', function() {
+            autoResize();
+            // Enable/disable send button based on input
+            sendButton.disabled = !this.value.trim();
+        });
+        
+        messageInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+        
+        sendButton.addEventListener('click', sendMessage);
+    }
+}
