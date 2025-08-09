@@ -55,3 +55,18 @@ function loadConversationHistory() {
 function saveConversationHistory() {
     localStorage.setItem(`conversation_${currentUser.id}`, JSON.stringify(conversationHistory));
 }
+
+function displayConversationHistory() {
+    const messagesContainer = document.getElementById('messagesContainer');
+    if (!messagesContainer || conversationHistory.length === 0) return;
+    
+    // Hide welcome screen if there are messages
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    if (welcomeScreen && conversationHistory.length > 0) {
+        welcomeScreen.style.display = 'none';
+    }
+    
+    conversationHistory.forEach(msg => {
+        addMessageToChat(msg.role, msg.content, msg.timestamp, false);
+    });
+}
