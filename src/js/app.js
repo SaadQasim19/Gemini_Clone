@@ -190,3 +190,7 @@ function toggleTheme() {
         }
     }
 }
+
+function applyTheme() {
+    document.body.classList.toggle('dark-mode', isDarkMode);
+}
