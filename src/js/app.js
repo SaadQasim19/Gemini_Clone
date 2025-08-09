@@ -164,3 +164,8 @@ function setupEventListeners() {
         sendButton.addEventListener('click', sendMessage);
     }
 }
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.reload();
+}
