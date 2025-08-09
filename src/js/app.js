@@ -51,3 +51,7 @@ function loadConversationHistory() {
         displayConversationHistory();
     }
 }
+
+function saveConversationHistory() {
+    localStorage.setItem(`conversation_${currentUser.id}`, JSON.stringify(conversationHistory));
+}
