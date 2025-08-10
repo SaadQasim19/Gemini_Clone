@@ -246,3 +246,7 @@ function handleFileUpload(event) {
     
     event.target.value = '';
 }
+
+function removeFile(button) {
+    button.parentElement.remove();
+}
