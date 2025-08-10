@@ -227,3 +227,22 @@ function handleNavigation(action) {
             break;
     }
 }
+
+function handleFileUpload(event) {
+    const files = Array.from(event.target.files);
+    const attachedFiles = document.getElementById('attachedFiles');
+    
+    if (attachedFiles) {
+        files.forEach(file => {
+            const fileElement = document.createElement('div');
+            fileElement.className = 'attached-file';
+            fileElement.innerHTML = `
+                <span class="file-name">${file.name}</span>
+                <button class="remove-file" onclick="removeFile(this)">×</button>
+            `;
+            attachedFiles.appendChild(fileElement);
+        });
+    }
+    
+    event.target.value = '';
+}
