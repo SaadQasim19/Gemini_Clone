@@ -425,3 +425,26 @@ async function getAIResponse(message) {
                `\n\nRegarding "${message}", I'd be happy to help you explore this topic further!`;
     }
 }
+function addMessageToChat(sender, message, timestamp, save = true) {
+    const messagesContainer = document.getElementById('messagesContainer');
+    if (!messagesContainer) return;
+    
+    const messageElement = document.createElement('div');
+    messageElement.className = `message ${sender}-message`;
+    
+    const avatar = sender === 'user' ? 
+        (currentUser ? currentUser.name.charAt(0).toUpperCase() : 'U') : 'G';
+    
+    const timeString = timestamp ? new Date(timestamp).toLocaleTimeString() : new Date().toLocaleTimeString();
+    
+    messageElement.innerHTML = `
+        <div class="message-avatar">${avatar}</div>
+        <div class="message-content">
+            <div class="message-text">${message}</div>
+            <div class="message-time">${timeString}</div>
+        </div>
+    `;
+    
+    messagesContainer.appendChild(messageElement);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
