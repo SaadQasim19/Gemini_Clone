@@ -194,3 +194,36 @@ function toggleTheme() {
 function applyTheme() {
     document.body.classList.toggle('dark-mode', isDarkMode);
 }
+
+function handleNavigation(action) {
+    const messagesContainer = document.getElementById('messagesContainer');
+    
+    switch (action) {
+        case 'new-chat':
+            // Clear messages and show welcome screen
+            conversationHistory = [];
+            saveConversationHistory();
+            if (messagesContainer) {
+                messagesContainer.innerHTML = `
+                    <div class="welcome-screen" id="welcomeScreen">
+                        <div class="welcome-logo">G</div>
+                        <h2 class="welcome-greeting" id="welcomeGreeting"></h2>
+                        <p class="welcome-subtitle">How can I help you today?</p>
+                    </div>
+                `;
+                setTimeout(() => {
+                    showGreeting(currentUser);
+                }, 50);
+            }
+            break;
+        case 'history':
+            loadChatHistory();
+            break;
+        case 'recent':
+            loadRecentChats();
+            break;
+        case 'settings':
+            showSettings();
+            break;
+    }
+}
