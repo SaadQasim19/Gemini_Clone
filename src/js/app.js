@@ -258,3 +258,71 @@ function autoResize() {
         messageInput.style.height = messageInput.scrollHeight + 'px';
     }
 }
+
+async function sendMessage() {
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+    const message = messageInput.value.trim();
+    
+    if (!message || isTyping) return;
+    
+    sendButton.disabled = true;
+    isTyping = true;
+    
+    // Add user message to chat
+    const userMessage = {
+        role: 'user',
+        content: message,
+        timestamp: new Date().toISOString()
+    };
+    
+    conversationHistory.push(userMessage);
+    addMessageToChat('user', message, userMessage.timestamp);
+    
+    // Clear input
+    messageInput.value = '';
+    messageInput.style.height = 'auto';
+    
+    // Hide welcome screen
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    if (welcomeScreen) {
+        welcomeScreen.style.display = 'none';
+    }
+    
+    // Clear attached files
+    const attachedFiles = document.getElementById('attachedFiles');
+    if (attachedFiles) {
+        attachedFiles.innerHTML = '';
+    }
+    
+    // Show typing indicator
+    showTypingIndicator();
+    
+    try {
+        // Get AI response
+        const response = await getAIResponse(message);
+        
+        // Hide typing indicator
+        hideTypingIndicator();
+        
+        // Add AI response to chat
+        const aiMessage = {
+            role: 'assistant',
+            content: response,
+            timestamp: new Date().toISOString()
+        };
+        
+        conversationHistory.push(aiMessage);
+        addMessageToChat('ai', response, aiMessage.timestamp);
+        
+        // Save conversation
+        saveConversationHistory();
+        
+    } catch (error) {
+        hideTypingIndicator();
+        addMessageToChat('ai', 'Sorry, I encountered an error. Please try again.', new Date().toISOString());
+    }
+    
+    isTyping = false;
+    sendButton.disabled = !messageInput.value.trim();
+}
