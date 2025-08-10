@@ -326,3 +326,28 @@ async function sendMessage() {
     isTyping = false;
     sendButton.disabled = !messageInput.value.trim();
 }
+
+function showTypingIndicator() {
+    const messagesContainer = document.getElementById('messagesContainer');
+    if (!messagesContainer) return;
+    
+    const typingIndicator = document.createElement('div');
+    typingIndicator.className = 'message ai-message typing-indicator';
+    typingIndicator.id = 'typingIndicator';
+    
+    typingIndicator.innerHTML = `
+        <div class="message-avatar">G</div>
+        <div class="message-content">
+            <div class="message-text">
+                <div class="typing-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    messagesContainer.appendChild(typingIndicator);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
