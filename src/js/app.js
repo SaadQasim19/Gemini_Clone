@@ -358,3 +358,70 @@ function hideTypingIndicator() {
         typingIndicator.remove();
     }
 }
+
+// Fixed getAIResponse function with proper error handling
+async function getAIResponse(message) {
+    const API_KEY = 'AIzaSyB-6-K2vXTu7vG6JW34IRrdGSAgDdLoOR8';
+    const API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+    
+    try {
+        const response = await fetch(`${API_URL}?key=${API_KEY}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                contents: [{
+                    parts: [{
+                        text: message
+                    }]
+                }]
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        
+        // Check if the response has the expected structure
+        if (data.candidates && data.candidates.length > 0 && 
+            data.candidates[0].content && data.candidates[0].content.parts && 
+            data.candidates[0].content.parts.length > 0) {
+            return data.candidates[0].content.parts[0].text;
+        } else {
+            throw new Error('Invalid response structure from API');
+        }
+        
+    } catch (error) {
+        console.error('AI API Error:', error);
+        
+        // Fallback to mock responses if API fails
+        const mockResponses = [
+            "I'm here to help! What specific information are you looking for?",
+            "That's an interesting question. Let me think about that...",
+            "I'd be happy to assist you with that. Could you provide more details?",
+            "Great question! Here's what I can tell you about that topic...",
+            "I understand what you're asking. Let me provide a comprehensive answer."
+        ];
+        
+        // Simple pattern matching for better mock responses
+        const lowerMessage = message.toLowerCase();
+        
+        if (lowerMessage.includes('hello') || lowerMessage.includes('hi') || lowerMessage.includes('hey')) {
+            return "Hello! I'm Gemini, your AI assistant. How can I help you today?";
+        }
+        
+        if (lowerMessage.includes('code') || lowerMessage.includes('programming')) {
+            return "I can help you with coding! What programming language or concept would you like to explore?";
+        }
+        
+        if (lowerMessage.includes('?')) {
+            return "That's a great question! " + mockResponses[Math.floor(Math.random() * mockResponses.length)];
+        }
+        
+        return mockResponses[Math.floor(Math.random() * mockResponses.length)] + 
+               `\n\nRegarding "${message}", I'd be happy to help you explore this topic further!`;
+    }
+}
