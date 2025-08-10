@@ -250,3 +250,11 @@ function handleFileUpload(event) {
 function removeFile(button) {
     button.parentElement.remove();
 }
+
+function autoResize() {
+    const messageInput = document.getElementById('messageInput');
+    if (messageInput) {
+        messageInput.style.height = 'auto';
+        messageInput.style.height = messageInput.scrollHeight + 'px';
+    }
+}
