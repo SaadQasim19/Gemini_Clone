@@ -533,3 +533,8 @@ function clearConversationHistory() {
     saveConversationHistory();
     alert('Chat history cleared!');
 }
+
+// Initialize app when DOM is loaded
+function initializeApp() {
+    console.log('Gemini AI Clone initialized successfully');
+}
