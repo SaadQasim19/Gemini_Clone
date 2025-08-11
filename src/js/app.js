@@ -495,3 +495,35 @@ function loadRecentChats() {
         `;
     }
 }
+
+function showSettings() {
+    const messagesContainer = document.getElementById('messagesContainer');
+    if (messagesContainer) {
+        messagesContainer.innerHTML = `
+            <div class="content-section">
+                <h3>Settings</h3>
+                <div class="setting-item">
+                    <label>
+                        <input type="checkbox" ${isDarkMode ? 'checked' : ''} onchange="toggleTheme()"> 
+                        Dark Mode
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label>
+                        Language: 
+                        <select>
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                            <option value="fr">French</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <button onclick="clearConversationHistory()" class="clear-history-btn">
+                        Clear Chat History
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+}
