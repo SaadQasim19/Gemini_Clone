@@ -1,10 +1,12 @@
-//! Main JavaScript file for the Gemini AI Clone application
+// Main JavaScript file for the Gemini AI Clone application
+
 // State management
 let currentUser = null;
 let isDarkMode = false;
 let conversationHistory = [];
 let isTyping = false;
 
+// Check authentication on page load
 document.addEventListener('DOMContentLoaded', function() {
     const savedUser = JSON.parse(localStorage.getItem('currentUser'));
     const authScreen = document.getElementById('authScreen');
@@ -425,6 +427,7 @@ async function getAIResponse(message) {
                `\n\nRegarding "${message}", I'd be happy to help you explore this topic further!`;
     }
 }
+
 function addMessageToChat(sender, message, timestamp, save = true) {
     const messagesContainer = document.getElementById('messagesContainer');
     if (!messagesContainer) return;
