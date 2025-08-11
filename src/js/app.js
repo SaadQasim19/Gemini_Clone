@@ -448,3 +448,26 @@ function addMessageToChat(sender, message, timestamp, save = true) {
     messagesContainer.appendChild(messageElement);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
+
+function loadChatHistory() {
+    const messagesContainer = document.getElementById('messagesContainer');
+    if (messagesContainer) {
+        messagesContainer.innerHTML = `
+            <div class="content-section">
+                <h3>Chat History</h3>
+                <div class="history-list">
+                    ${conversationHistory.length > 0 ? 
+                        conversationHistory.map(msg => `
+                            <div class="history-item">
+                                <strong>${msg.role === 'user' ? 'You' : 'Gemini'}:</strong> 
+                                ${msg.content.substring(0, 100)}${msg.content.length > 100 ? '...' : ''}
+                                <small>${new Date(msg.timestamp).toLocaleString()}</small>
+                            </div>
+                        `).join('') : 
+                        '<p>No chat history available.</p>'
+                    }
+                </div>
+            </div>
+        `;
+    }
+}
