@@ -471,3 +471,27 @@ function loadChatHistory() {
         `;
     }
 }
+
+function loadRecentChats() {
+    const messagesContainer = document.getElementById('messagesContainer');
+    if (messagesContainer) {
+        const recentMessages = conversationHistory.slice(-10);
+        messagesContainer.innerHTML = `
+            <div class="content-section">
+                <h3>Recent Conversations</h3>
+                <div class="recent-list">
+                    ${recentMessages.length > 0 ? 
+                        recentMessages.map(msg => `
+                            <div class="recent-item">
+                                <strong>${msg.role === 'user' ? 'You' : 'Gemini'}:</strong> 
+                                ${msg.content}
+                                <small>${new Date(msg.timestamp).toLocaleString()}</small>
+                            </div>
+                        `).join('') : 
+                        '<p>No recent conversations available.</p>'
+                    }
+                </div>
+            </div>
+        `;
+    }
+}
