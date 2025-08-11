@@ -527,3 +527,9 @@ function showSettings() {
         `;
     }
 }
+
+function clearConversationHistory() {
+    conversationHistory = [];
+    saveConversationHistory();
+    alert('Chat history cleared!');
+}
