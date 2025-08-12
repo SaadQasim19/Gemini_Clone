@@ -25,3 +25,6 @@ function loadUserData() {
 function clearUserData() {
     localStorage.removeItem('currentUser');
 }
+function toggleDarkMode(isDark) {
+    document.body.setAttribute('data-theme', isDark ? 'dark' : 'light');
+}
