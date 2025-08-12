@@ -22,3 +22,6 @@ function saveUserData(user) {
 function loadUserData() {
     return JSON.parse(localStorage.getItem('currentUser'));
 }
+function clearUserData() {
+    localStorage.removeItem('currentUser');
+}
