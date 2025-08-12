@@ -19,3 +19,6 @@ function getGreeting() {
 function saveUserData(user) {
     localStorage.setItem('currentUser', JSON.stringify(user));
 }
+function loadUserData() {
+    return JSON.parse(localStorage.getItem('currentUser'));
+}
