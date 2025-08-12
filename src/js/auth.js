@@ -17,3 +17,4 @@ let isSignUp = false;
 if (authForm) {
     authForm.addEventListener('submit', handleAuth);
 }
+// Toggle between sign-up and login mode
