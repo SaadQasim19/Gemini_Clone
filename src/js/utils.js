@@ -16,3 +16,6 @@ function getGreeting() {
         return "Good evening";
     }
 }
+function saveUserData(user) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+}
