@@ -13,3 +13,7 @@ const passwordError = document.getElementById('passwordError');
 const confirmPasswordError = document.getElementById('confirmPasswordError');
 
 let isSignUp = false;
+
+if (authForm) {
+    authForm.addEventListener('submit', handleAuth);
+}
