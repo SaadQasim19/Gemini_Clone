@@ -152,3 +152,9 @@ function validateEmail(email) {
 function validatePassword(password) {
     return password.length >= 6;
 }
+function resetErrors() {
+    if (nameError) nameError.textContent = '';
+    if (emailError) emailError.textContent = '';
+    if (passwordError) passwordError.textContent = '';
+    if (confirmPasswordError) confirmPasswordError.textContent = '';
+}
