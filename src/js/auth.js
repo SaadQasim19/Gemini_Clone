@@ -134,3 +134,14 @@ function signIn(email, password) {
         window.location.reload();
     }, 1000);
 }
+function showLoading(isLoading) {
+    if (isLoading) {
+        authButton.disabled = true;
+        authSpinner.style.display = 'inline-block';
+        authButtonText.textContent = isSignUp ? 'Signing Up...' : 'Signing In...';
+    } else {
+        authButton.disabled = false;
+        authSpinner.style.display = 'none';
+        authButtonText.textContent = isSignUp ? 'Sign Up' : 'Sign In';
+    }
+}
