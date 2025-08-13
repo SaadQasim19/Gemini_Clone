@@ -45,3 +45,45 @@ function toggleAuthMode() {
         authSubtitle.textContent = 'Sign in to continue';
     }
 }
+function handleAuth(event) {
+    event.preventDefault();
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    const name = nameInput.value.trim();
+
+    // Reset error messages
+    resetErrors();
+
+    if (isSignUp) {
+        const confirmPassword = confirmPasswordInput.value.trim();
+        if (!name) {
+            nameError.textContent = 'Name is required.';
+            return;
+        }
+        if (password !== confirmPassword) {
+            confirmPasswordError.textContent = 'Passwords do not match.';
+            return;
+        }
+        if (!validateEmail(email)) {
+            emailError.textContent = 'Invalid email format.';
+            return;
+        }
+        if (!validatePassword(password)) {
+            passwordError.textContent = 'Password must be at least 6 characters.';
+            return;
+        }
+        // Sign up logic
+        signUp(name, email, password);
+    } else {
+        if (!validateEmail(email)) {
+            emailError.textContent = 'Invalid email format.';
+            return;
+        }
+        if (!password) {
+            passwordError.textContent = 'Password is required.';
+            return;
+        }
+        // Sign in logic
+        signIn(email, password);
+    }
+}
