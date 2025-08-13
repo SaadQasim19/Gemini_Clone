@@ -145,3 +145,7 @@ function showLoading(isLoading) {
         authButtonText.textContent = isSignUp ? 'Sign Up' : 'Sign In';
     }
 }
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
