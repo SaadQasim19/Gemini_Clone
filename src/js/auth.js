@@ -87,3 +87,28 @@ function handleAuth(event) {
         signIn(email, password);
     }
 }
+function signUp(name, email, password) {
+    // Show loading state
+    showLoading(true);
+    
+    // Simulate API delay
+    setTimeout(() => {
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const existingUser = users.find(user => user.email === email);
+        if (existingUser) {
+            emailError.textContent = 'Email already exists.';
+            showLoading(false);
+            return;
+        }
+        const newUser = { name, email, password, id: Date.now() };
+        users.push(newUser);
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        // Set current user session
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+        
+        showLoading(false);
+        // Reload page to show main app
+        window.location.reload();
+    }, 1000);
+}
