@@ -1,4 +1,5 @@
 
+
 .auth-screen {
     position: fixed;
     top: 0;
@@ -60,6 +61,7 @@
     flex-direction: column;
     gap: 20px;
 }
+
 .form-group {
     position: relative;
 }
