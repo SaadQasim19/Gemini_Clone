@@ -112,3 +112,25 @@ function signUp(name, email, password) {
         window.location.reload();
     }, 1000);
 }
+function signIn(email, password) {
+    // Show loading state
+    showLoading(true);
+    
+    // Simulate API delay
+    setTimeout(() => {
+        const users = JSON.parse(localStorage.getItem('users') || '[]');
+        const user = users.find(user => user.email === email && user.password === password);
+        if (!user) {
+            emailError.textContent = 'Invalid email or password.';
+            showLoading(false);
+            return;
+        }
+        
+        // Set current user session
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        
+        showLoading(false);
+        // Reload page to show main app
+        window.location.reload();
+    }, 1000);
+}
