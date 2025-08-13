@@ -1,3 +1,4 @@
+
 .sidebar {
     width: 280px;
     background: var(--sidebar-bg);
@@ -47,7 +48,6 @@
     overflow-y: auto;
 }
 
-/** Nav-items */
 .nav-item {
     display: flex;
     align-items: center;
