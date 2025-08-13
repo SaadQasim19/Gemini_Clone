@@ -31,6 +31,7 @@ body.dark-mode {
     --input-bg: #2d2e30;
     --error-color: #f28b82;
 }
+
 body {
     font-family: 'Google Sans', 'Helvetica Neue', Arial, sans-serif;
     background-color: var(--primary-bg);
