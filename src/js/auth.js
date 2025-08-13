@@ -158,3 +158,10 @@ function resetErrors() {
     if (passwordError) passwordError.textContent = '';
     if (confirmPasswordError) confirmPasswordError.textContent = '';
 }
+document.addEventListener('DOMContentLoaded', function() {
+    const switchButton = document.getElementById('switchButton');
+    
+    if (switchButton) {
+        switchButton.addEventListener('click', toggleAuthMode);
+    }
+});
