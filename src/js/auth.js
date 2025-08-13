@@ -1,4 +1,5 @@
 
+
 const authForm = document.getElementById('authForm');
 const authButton = document.getElementById('authButton');
 const authButtonText = document.getElementById('authButtonText');
@@ -17,7 +18,8 @@ let isSignUp = false;
 if (authForm) {
     authForm.addEventListener('submit', handleAuth);
 }
-// Toggle between sign-up and login mode
+
+
 function toggleAuthMode() {
     isSignUp = !isSignUp;
     const nameGroup = document.getElementById('nameGroup');
@@ -45,13 +47,15 @@ function toggleAuthMode() {
         authSubtitle.textContent = 'Sign in to continue';
     }
 }
+
+
 function handleAuth(event) {
     event.preventDefault();
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
     const name = nameInput.value.trim();
 
-    // Reset error messages
+    
     resetErrors();
 
     if (isSignUp) {
@@ -72,7 +76,7 @@ function handleAuth(event) {
             passwordError.textContent = 'Password must be at least 6 characters.';
             return;
         }
-        // Sign up logic
+        
         signUp(name, email, password);
     } else {
         if (!validateEmail(email)) {
@@ -83,15 +87,16 @@ function handleAuth(event) {
             passwordError.textContent = 'Password is required.';
             return;
         }
-        // Sign in logic
+        
         signIn(email, password);
     }
 }
+
 function signUp(name, email, password) {
-    // Show loading state
+    
     showLoading(true);
     
-    // Simulate API delay
+    
     setTimeout(() => {
         const users = JSON.parse(localStorage.getItem('users') || '[]');
         const existingUser = users.find(user => user.email === email);
@@ -104,19 +109,21 @@ function signUp(name, email, password) {
         users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
         
-        // Set current user session
+       
         localStorage.setItem('currentUser', JSON.stringify(newUser));
         
         showLoading(false);
-        // Reload page to show main app
+       
         window.location.reload();
     }, 1000);
 }
+
+
 function signIn(email, password) {
-    // Show loading state
+    
     showLoading(true);
     
-    // Simulate API delay
+  
     setTimeout(() => {
         const users = JSON.parse(localStorage.getItem('users') || '[]');
         const user = users.find(user => user.email === email && user.password === password);
@@ -126,14 +133,13 @@ function signIn(email, password) {
             return;
         }
         
-        // Set current user session
         localStorage.setItem('currentUser', JSON.stringify(user));
         
         showLoading(false);
-        // Reload page to show main app
         window.location.reload();
     }, 1000);
 }
+
 function showLoading(isLoading) {
     if (isLoading) {
         authButton.disabled = true;
@@ -145,19 +151,23 @@ function showLoading(isLoading) {
         authButtonText.textContent = isSignUp ? 'Sign Up' : 'Sign In';
     }
 }
+
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
+
 function validatePassword(password) {
     return password.length >= 6;
 }
+
 function resetErrors() {
     if (nameError) nameError.textContent = '';
     if (emailError) emailError.textContent = '';
     if (passwordError) passwordError.textContent = '';
     if (confirmPasswordError) confirmPasswordError.textContent = '';
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     const switchButton = document.getElementById('switchButton');
     
